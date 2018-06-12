@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
-import flatpickr from "flatpickr";
+import flatpickr from 'flatpickr';
 
 @Component({
   selector: 'ngx-flatpickr',
