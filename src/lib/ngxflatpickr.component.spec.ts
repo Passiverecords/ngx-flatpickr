@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FlatpickrComponent } from './flatpickr.component';
+import { NgxFlatpickrComponent } from './ngxflatpickr.component';
 
-describe('FlatpickrComponent', () => {
-  let component: FlatpickrComponent;
+describe('NgxFlatpickrComponent', () => {
+  let component: NgxFlatpickrComponent;
   let fixture: ComponentFixture<FlatpickrComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FlatpickrComponent ]
+      declarations: [ NgxFlatpickrComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FlatpickrComponent);
+    fixture = TestBed.createComponent(NgxFlatpickrComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

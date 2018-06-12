@@ -2,6 +2,6 @@
  * Public API Surface of flatpickr
  */
 
-export * from './lib/flatpickr.service';
-export * from './lib/flatpickr.component';
-export * from './lib/flatpickr.module';
+export * from './lib/ngxflatpickr.service';
+export * from './lib/ngxflatpickr.component';
+export * from './lib/ngxflatpickr.module';
