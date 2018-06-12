@@ -12,12 +12,10 @@ import flatpickrImport from 'flatpickr';
 export class NgxFlatpickrComponent implements OnInit {
 
   @ViewChild('container') private el: ElementRef;
-  private options: object;
+  @Input() private options: object = {};
   private pickerObj: object;
 
   constructor() {
-    this.options = {
-    };
   }
 
   ngOnInit() {
