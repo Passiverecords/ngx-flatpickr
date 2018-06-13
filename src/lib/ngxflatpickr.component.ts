@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, EventEmitter, Input, Output } from '@angular/core';
 import flatpickrImport from 'flatpickr';
 
 @Component({
