@@ -14,7 +14,7 @@ export class NgxFlatpickrComponent implements OnInit {
   @ViewChild('container') private el: ElementRef;
   @Input() private options: object = {};
   private pickerObj: object;
-  private value: string;
+  public value: string;
 
   constructor() {
   }
