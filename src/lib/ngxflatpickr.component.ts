@@ -5,7 +5,7 @@ import flatpickrImport from 'flatpickr';
   selector: 'ngx-flatpickr',
   template: `
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <input #container>
+    <input #container [(ngModel)]="value">
   `,
   styles: []
 })
@@ -14,12 +14,17 @@ export class NgxFlatpickrComponent implements OnInit {
   @ViewChild('container') private el: ElementRef;
   @Input() private options: object = {};
   private pickerObj: object;
+  private value: string;
 
   constructor() {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     flatpickrImport(this.el.nativeElement, this.options);
+  }
+
+  getValue(): string {
+    return this.value;
   }
 
 }
