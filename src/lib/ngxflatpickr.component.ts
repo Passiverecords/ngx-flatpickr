@@ -5,7 +5,7 @@ import flatpickrImport from 'flatpickr';
   selector: 'ngx-flatpickr',
   template: `
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <input #container [ngModel]="value" (ngModelChange)="change($event)">
+    <input #container [class]="class" [ngModel]="value" (ngModelChange)="change($event)">
   `,
   styles: []
 })
@@ -14,6 +14,8 @@ export class NgxFlatpickrComponent implements OnInit {
   @ViewChild('container') private el: ElementRef;
   @Input() private options: object = {};
   private pickerObj: object;
+
+  @Input() public class: string;
 
   @Input() public value: string;
   @Output() public valueChange = new EventEmitter();
