@@ -16,7 +16,7 @@ import flatpickrImport from 'flatpickr'
     <style href=""https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"></style>
     <input #container [class]="class" [(ngModel)]="value" (ngModelChange)="change($event)">
   `,
-  style: '',
+  styles: '',
   encapsulation: ViewEncapsulation.None
 })
 export class NgxFlatpickrComponent implements OnInit {
