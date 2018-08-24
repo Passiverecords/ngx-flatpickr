@@ -11,10 +11,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "typeRoots": [
-      "src/flatpickr/src/typings.d.ts",
-      "src/flatpickr/src/types/*.ts",
-    ],
+    "types": [],
     "lib": [
       "dom",
       "es2015"

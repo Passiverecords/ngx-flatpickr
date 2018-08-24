@@ -7,10 +7,10 @@ import {
   Input,
   Output
 } from '@angular/core'
-import flatpickrImport from '../flatpickr/src'
 
-import { CustomLocale } from '../flatpickr/src/types/locale'
-import locale from '../flatpickr/src/l10n'
+import flatpickrImport from 'flatpickr'
+import { CustomLocale } from 'flatpickr/dist/types/locale'
+import locale from 'flatpickr/dist/l10n'
 
 @Component({
   selector: 'ngx-flatpickr',
