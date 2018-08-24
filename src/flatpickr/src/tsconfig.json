@@ -14,8 +14,5 @@
       "esnext.asynciterable"
     ],
     "baseUrl": "./"
-  },
-  "exclude": [
-    "./__tests__",
-  ]
+  }
 }
