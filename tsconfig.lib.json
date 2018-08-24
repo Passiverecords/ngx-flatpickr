@@ -12,8 +12,8 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "types": [
-      "./src/flatpickr/src/typings.d.ts",
-      "./src/flatpickr/src/types/*.ts"
+      "src/flatpickr/src/typings.d.ts",
+      "src/flatpickr/src/types/*.ts"
     ],
     "lib": [
       "dom",
