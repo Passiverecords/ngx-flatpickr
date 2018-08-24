@@ -7,7 +7,7 @@ import {
   Input,
   Output
 } from '@angular/core'
-import flatpickrImport from 'flatpickr'
+import flatpickrImport from '../flatpickr/src'
 
 import { CustomLocale } from '../flatpickr/src/types/locale'
 import locale from '../flatpickr/src/l10n'
@@ -33,7 +33,7 @@ export class NgxFlatpickrComponent implements OnInit {
 
   @Input() public class: string = ''
   @Input() public placeholder: string = ''
- 
+
   @Input() public value: string
   @Output() public valueChange = new EventEmitter()
 
