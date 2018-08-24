@@ -16,7 +16,12 @@ import locale from '../flatpickr/src/l10n'
   selector: 'ngx-flatpickr',
   template: `
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <input #container [class]="class" [(ngModel)]="value" (ngModelChange)="change($event)">
+    <input
+      #container
+      [class]="class"
+      [placeholder]="placeholder"
+      [(ngModel)]="value"
+      (ngModelChange)="change($event)">
   `,
   styles: []
 })
@@ -27,6 +32,7 @@ export class NgxFlatpickrComponent implements OnInit {
   private pickerObj: any
 
   @Input() public class: string = ''
+  @Input() public placeholder: string = ''
  
   @Input() public value: string
   @Output() public valueChange = new EventEmitter()
