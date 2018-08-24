@@ -5,19 +5,17 @@ import {
   ElementRef,
   EventEmitter,
   Input,
-  Output,
-  ViewEncapsulation
+  Output
 } from '@angular/core'
 import flatpickrImport from 'flatpickr'
 
 @Component({
   selector: 'ngx-flatpickr',
   template: `
-    <style href=""https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"></style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <input #container [class]="class" [(ngModel)]="value" (ngModelChange)="change($event)">
   `,
-  styles: '',
-  encapsulation: ViewEncapsulation.None
+  styles: []
 })
 export class NgxFlatpickrComponent implements OnInit {
   @ViewChild("container") private el: ElementRef
