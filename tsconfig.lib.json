@@ -12,7 +12,7 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "typeRoots": [
-      "src/flatpickr/src",
+      "src/flatpickr/src/typings.d.ts",
       "src/flatpickr/src/types/*.ts",
     ],
     "lib": [
