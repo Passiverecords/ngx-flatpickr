@@ -21,7 +21,8 @@ import locale from 'flatpickr/dist/l10n'
     <input
       #container
       [class]="class"
-      [placeholder]="placeholder">
+      [placeholder]="placeholder"
+      (change)="emit($event)">
   `,
   styles: []
 })
@@ -44,9 +45,6 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.instance = <Instance>flatpickrImport(this.el.nativeElement, {
       ...this.options,
-      onChange: (dates) => {
-        this.valueChange.emit(dates[0])
-      },
       'locale': this.setLocale(this.language)
     })
   }
@@ -214,6 +212,10 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit {
       default:
         return locale.default
     }
+  }
+
+  emit(newValue): void {
+    this.valueChange.emit(newValue)
   }
 
   ngOnChanges(changes): void {
