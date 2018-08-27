@@ -22,7 +22,6 @@ import locale from 'flatpickr/dist/l10n'
       #container
       [class]="class"
       [placeholder]="placeholder"
-      [ngModel]="value"
       (ngModelChange)="change($event)">
   `,
   styles: []
@@ -215,13 +214,12 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit {
   }
 
   change(newValue): void {
-    this.value = newValue
     this.valueChange.emit(newValue)
   }
 
   ngOnChanges(changes): void {
     if (this.instance != undefined && changes['value'] !== undefined) {
-      this.instance.setDate(changes['value'].currentValue)
+      this.instance.setDate(changes['value'].currentValue, true)
     }
   }
 
