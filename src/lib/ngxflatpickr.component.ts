@@ -51,6 +51,7 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.onInit.emit(this.instance)
+    this.instance.setDate(this.value, true)
   }
 
   setLocale(language: string): CustomLocale {
@@ -218,7 +219,6 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit {
   }
 
   ngOnChanges(changes): void {
-    console.log(this.instance, changes)
     if (this.instance != undefined && changes['value'] !== undefined) {
       this.instance.setDate(changes['value'].currentValue, true)
     }
