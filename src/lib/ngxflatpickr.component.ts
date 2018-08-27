@@ -218,7 +218,7 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit {
   }
 
   ngOnChanges(changes): void {
-    console.log(changes)
+    console.log(this.instance, changes)
     if (this.instance != undefined && changes['value'] !== undefined) {
       this.instance.setDate(changes['value'].currentValue, true)
     }
