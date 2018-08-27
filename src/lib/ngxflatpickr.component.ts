@@ -37,6 +37,8 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit, OnChanges, 
   @Input() public language: string
   @Input() public class: string
   @Input() public placeholder: string
+  @Input('time-only') public timeonly: boolean
+  @Input('date-only') public dateonly: boolean
   @Output() public onInit: EventEmitter<Instance>
 
   @Input() public default: Date
@@ -47,11 +49,15 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit, OnChanges, 
     this.language = ''
     this.class = ''
     this.placeholder = ''
+    this.timeonly = false
+    this.dateonly = false
     this.onInit = new EventEmitter<Instance>()
     this.onDateSelect = new EventEmitter<Date|Date[]>()
   }
 
   ngOnInit(): void {
+    this.checkDateTimeOnly()
+
     this.instance = flatpickrImport(this.el.nativeElement, {
       ...this.options,
       onChange: (dates: Array<Date>) => {
@@ -64,6 +70,23 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit, OnChanges, 
   ngAfterViewInit(): void {
     this.onInit.emit(this.instance)
     this.setDate(this.default)
+  }
+
+  checkDateTimeOnly(): void {
+    if (this.timeonly) {
+      this.options = {
+        ...this.options,
+        noCalendar: true,
+        enableTime: true
+      }
+    }
+    else if (this.dateonly) {
+      this.options = {
+        ...this.options,
+        noCalendar: false,
+        enableTime: false
+      }
+    }
   }
 
   setLocale(language: string): CustomLocale {
