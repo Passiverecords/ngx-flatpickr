@@ -34,10 +34,10 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit {
   @Input() public language: string = ''
   @Input() public class: string = ''
   @Input() public placeholder: string = ''
-  @Output() public onInit: EventEmitter<Instance> = new EventEmitter<Instance>()
-
   @Input() public value: string
-  @Output() public valueChange: EventEmitter<Date> = new EventEmitter<Date>()
+  @Output() public onInit: EventEmitter<Instance> = new EventEmitter<Instance>()
+  @Output() public onChange: EventEmitter<Date> = new EventEmitter<Date>()
+
 
 
   constructor() {}
@@ -215,7 +215,7 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit {
   }
 
   emit(newValue): void {
-    this.valueChange.emit(newValue)
+    this.onChange.emit(newValue)
   }
 
   ngOnChanges(changes): void {
