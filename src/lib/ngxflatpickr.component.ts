@@ -1,6 +1,7 @@
 import {
   Component,
   OnInit,
+  AfterViewInit,
   ViewChild,
   ElementRef,
   EventEmitter,
@@ -10,6 +11,7 @@ import {
 
 import flatpickrImport from 'flatpickr'
 import { CustomLocale } from 'flatpickr/dist/types/locale'
+import { Instance } from 'flatpickr/dist/types/instance'
 import locale from 'flatpickr/dist/l10n'
 
 @Component({
@@ -25,25 +27,31 @@ import locale from 'flatpickr/dist/l10n'
   `,
   styles: []
 })
-export class NgxFlatpickrComponent implements OnInit {
+export class NgxFlatpickrComponent implements OnInit, AfterViewInit {
   @ViewChild("container") private el: ElementRef
+  private instance: Instance
+
   @Input() private options: object = {}
   @Input() public language: string = ''
-  private pickerObj: any
-
   @Input() public class: string = ''
   @Input() public placeholder: string = ''
+  @Output() public onInit: EventEmitter<Instance> = new EventEmitter<Instance>()
 
   @Input() public value: string
-  @Output() public valueChange = new EventEmitter()
+  @Output() public valueChange: EventEmitter<Date> = new EventEmitter<Date>()
+
 
   constructor() {}
 
   ngOnInit(): void {
-    this.pickerObj = flatpickrImport(this.el.nativeElement, {
+    this.instance = flatpickrImport(this.el.nativeElement, {
       ...this.options,
       'locale': this.setLocale(this.language)
     })
+  }
+
+  ngAfterViewInit(): void {
+    this.onInit.emit(this.instance)
   }
 
   setLocale(language: string): CustomLocale {
@@ -206,18 +214,26 @@ export class NgxFlatpickrComponent implements OnInit {
     }
   }
 
-  change(newValue) {
+  change(newValue): void {
     this.value = newValue
     this.valueChange.emit(newValue)
   }
 
-  ngOnChanges(changes) {
-    if (this.pickerObj != undefined) {
-      this.pickerObj.setDate(changes.value.currentValue)
+  ngOnChanges(changes): void {
+    if (this.instance != undefined) {
+      if (changes['value'] !== undefined) {
+        this.instance.setDate(changes['value'].currentValue)
+      }
+      else if (
+        changes['options'] !== undefined &&
+        changes['options']['defaultDate'] !== undefined
+      ) {
+        this.instance.setDate(changes['options']['defaultDate'].currentValue)
+      }
     }
   }
 
-  ngOnDestroy() {
-    this.pickerObj.destroy()
+  ngOnDestroy(): void {
+    this.instance.destroy()
   }
 }
