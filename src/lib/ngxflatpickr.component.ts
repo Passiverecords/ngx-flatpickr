@@ -22,7 +22,7 @@ import locale from 'flatpickr/dist/l10n'
       #container
       [class]="class"
       [placeholder]="placeholder"
-      (ngModelChange)="change($event)">
+      (ngModelChange)="emit($event)">
   `,
   styles: []
 })
@@ -214,7 +214,7 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit {
     }
   }
 
-  change(newValue): void {
+  emit(newValue): void {
     this.valueChange.emit(newValue)
   }
 
