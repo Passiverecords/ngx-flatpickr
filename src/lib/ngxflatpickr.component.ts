@@ -22,7 +22,7 @@ import locale from 'flatpickr/dist/l10n'
       #container
       [class]="class"
       [placeholder]="placeholder"
-      [(ngModel)]="value"
+      [ngModel]="value"
       (ngModelChange)="change($event)">
   `,
   styles: []
