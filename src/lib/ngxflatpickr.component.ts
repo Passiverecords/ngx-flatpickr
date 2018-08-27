@@ -73,14 +73,14 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit, OnChanges, 
   }
 
   checkDateTimeOnly(): void {
-    if (this.timeonly !== undefined) {
+    if (this.timeonly != undefined) {
       this.options = {
         ...this.options,
         noCalendar: true,
         enableTime: true
       }
     }
-    else if (this.dateonly !== undefined) {
+    else if (this.dateonly != undefined) {
       this.options = {
         ...this.options,
         noCalendar: false,
