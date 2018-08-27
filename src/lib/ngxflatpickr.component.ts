@@ -44,7 +44,7 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.instance = flatpickrImport(this.el.nativeElement, {
+    this.instance = <Instance>flatpickrImport(this.el.nativeElement, {
       ...this.options,
       'locale': this.setLocale(this.language)
     })
