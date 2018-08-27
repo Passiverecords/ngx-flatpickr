@@ -22,7 +22,8 @@ import locale from 'flatpickr/dist/l10n'
       #container
       [class]="class"
       [placeholder]="placeholder"
-      (change)="emit($event)">
+      [ngModel]="setDate()"
+      (ngModelChange)="emit($event)">
   `,
   styles: []
 })
@@ -34,9 +35,10 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit {
   @Input() public language: string = ''
   @Input() public class: string = ''
   @Input() public placeholder: string = ''
-  @Input() public value: string
   @Output() public onInit: EventEmitter<Instance> = new EventEmitter<Instance>()
-  @Output() public dateChange: EventEmitter<Date> = new EventEmitter<Date>()
+
+  @Input() public value: string
+  @Output() public valueChange: EventEmitter<Date> = new EventEmitter<Date>()
 
   constructor() {}
 
@@ -212,15 +214,19 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit {
     }
   }
 
-  emit(newValue): void {
-    this.dateChange.emit(newValue)
+  setDate(): void {
+    this.instance.setDate(this.value, true)
   }
 
-  ngOnChanges(changes): void {
-    if (this.instance != undefined && changes['value'] !== undefined) {
-      this.instance.setDate(changes['value'].currentValue, true)
-    }
+  emit(newValue): void {
+    this.valueChange.emit(newValue)
   }
+
+  // ngOnChanges(changes): void {
+  //   if (this.instance != undefined && changes['value'] !== undefined) {
+  //     this.instance.setDate(changes['value'].currentValue, true)
+  //   }
+  // }
 
   ngOnDestroy(): void {
     this.instance.destroy()
