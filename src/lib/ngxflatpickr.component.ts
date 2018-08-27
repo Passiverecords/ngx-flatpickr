@@ -52,7 +52,7 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit, OnChanges, 
     this.timeonly = false
     this.dateonly = false
     this.onInit = new EventEmitter<Instance>()
-    this.onDateSelect = new EventEmitter<Date|Date[]>()
+    this.onDateSelect = new EventEmitter<Date[]>()
   }
 
   ngOnInit(): void {
@@ -60,8 +60,8 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit, OnChanges, 
 
     this.instance = flatpickrImport(this.el.nativeElement, {
       ...this.options,
-      onChange: (dates: Array<Date>) => {
-        this.onDateSelect.emit(dates)
+      onChange: (selectedDates: Date[]) => {
+        this.onDateSelect.emit(selectedDates)
       },
       'locale': this.setLocale(this.language)
     }) as Instance
