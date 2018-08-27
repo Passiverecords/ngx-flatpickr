@@ -61,7 +61,6 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit, OnChanges, 
     this.instance = flatpickrImport(this.el.nativeElement, {
       ...this.options,
       onChange: (selectedDates: Date[]) => {
-        console.log(selectedDates)
         this.onDateSelect.emit(selectedDates)
       },
       'locale': this.setLocale(this.language)
