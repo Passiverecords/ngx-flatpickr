@@ -14,6 +14,7 @@ flatpickr for Angular 2+
   placeholder="Please select a date"
   [options]="options"
   [(value)]="date"
+  (onInit)="initialized($event)"
   >
 </ngx-flatpickr>
 ```
@@ -28,7 +29,12 @@ flatpickr for Angular 2+
 - **options**:  
   *the placeholder text of the input field*
 
-  all the options available can be seen [on the flatpickr website](https://flatpickr.js.org/options/)
+  All the options available can be seen [on the flatpickr website](https://flatpickr.js.org/options/)
+
+- **onInit**:
+  *function launched after the picker is initialized*
+
+  The value returned in `$event` is the flatpickr instance
 
 - **value**:  
   *the selected date*
