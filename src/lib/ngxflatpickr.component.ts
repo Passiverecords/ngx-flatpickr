@@ -52,8 +52,8 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit, OnChanges, 
   @Input() public default: Date
   @Output() public onDateSelect: EventEmitter<Date|Date[]>
 
-  private _onChange: (_: Date|Date[]) => void
-  private _onTouched: any
+  public _onChange: (_: Date|Date[]) => void
+  public _onTouched: any
 
   constructor() {
     this.options = {}
