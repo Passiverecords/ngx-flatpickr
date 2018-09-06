@@ -97,17 +97,19 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
 
   // <FormControl>
   writeValue(value: Date|Date[]): void {
-    setTimeout(() => {
-      this.setDate(value)
-    })
+    this.setDate(value)
   }
 
   registerOnChange(fn: (_: Date|Date[]) => void): void {
-    this.onChange = fn
+    setTimeout(() => {
+      this.onChange = fn
+    })
   }
 
   registerOnTouched(fn: () => void): void {
-    this.onTouched = fn
+    setTimeout(() => {
+      this.onTouched = fn
+    })
   }
   // </FormControl>
 
