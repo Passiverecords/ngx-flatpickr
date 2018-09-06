@@ -9,8 +9,10 @@ import {
   EventEmitter,
   Input,
   Output,
-  SimpleChanges
+  SimpleChanges,
+  forwardRef
 } from '@angular/core'
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
 
 import flatpickrImport from 'flatpickr'
 import { CustomLocale } from 'flatpickr/dist/types/locale'
@@ -27,9 +29,16 @@ import locale from 'flatpickr/dist/l10n'
       [class]="class"
       [placeholder]="placeholder">
   `,
-  styles: []
+  styles: [],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NgxFlatpickrComponent),
+      multi: true
+    }
+  ]
 })
-export class NgxFlatpickrComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
+export class NgxFlatpickrComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy, ControlValueAccessor {
   @ViewChild("container") private el: ElementRef
   private instance: Instance
 
@@ -42,15 +51,18 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit, OnChanges, 
   @Input() public default: Date
   @Output() public onDateSelect: EventEmitter<Date|Date[]>
 
+  private _onChange: (_: Date|Date[]) => void
+
   constructor() {
     this.options = {}
     this.language = ''
     this.class = ''
     this.placeholder = ''
     this.onInit = new EventEmitter<Instance>()
-    this.onDateSelect = new EventEmitter<Date[]>()
+    this.onDateSelect = new EventEmitter<Date|Date[]>()
   }
 
+  // <Angular hooks>
   ngOnInit(): void {
     this.instance = flatpickrImport(this.el.nativeElement, {
       ...this.options,
@@ -65,6 +77,27 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit, OnChanges, 
     this.onInit.emit(this.instance)
     this.setDate(this.default)
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.instance != undefined && changes.hasOwnProperty('default')) {
+      this.setDate(changes['default'].currentValue)
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.instance.destroy()
+  }
+  // </Angular hooks>
+
+  // <FormControl>
+  writeValue(value: Date|Date[]): void {
+    this.setDate(value)
+  }
+
+  registerOnChange(fn: (_: Date|Date[]) => void): void {
+    this._onChange = fn
+  }
+  // </FormControl>
 
   setLocale(language: string): CustomLocale {
     switch(language.toLowerCase()) {
@@ -229,15 +262,6 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit, OnChanges, 
   setDate(newdate: Date|Date[]): void {
     this.instance.setDate(newdate, true)
     this.onDateSelect.emit(newdate)
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (this.instance != undefined && changes.hasOwnProperty('default')) {
-      this.setDate(changes['default'].currentValue)
-    }
-  }
-
-  ngOnDestroy(): void {
-    this.instance.destroy()
+    this._onChange(newdate)
   }
 }
