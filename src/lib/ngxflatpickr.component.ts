@@ -97,12 +97,13 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
     this.setDate(value)
   }
 
-  registerOnChange(fn: (_: Date|Date[]) => void): void {
+  registerOnChange(fn: any): void {
     console.log('registering onchange', fn)
     this._onChange = fn
   }
 
   registerOnTouched(fn: any): void {
+    console.log('registering ontouched', fn)
     this._onTouched = fn
   }
   // </FormControl>
