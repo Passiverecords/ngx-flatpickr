@@ -73,8 +73,6 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
       },
       'locale': this.setLocale(this.language)
     }) as Instance
-
-    console.log(FLATPICKR_VALUE_ACCESSOR)
   }
 
   ngAfterViewInit(): void {
