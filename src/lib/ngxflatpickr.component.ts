@@ -27,7 +27,8 @@ import locale from 'flatpickr/dist/l10n'
     <input
       #container
       [class]="class"
-      [placeholder]="placeholder">
+      [placeholder]="placeholder"
+      (blur)="_onTouched()">
   `,
   styles: [],
   providers: [
@@ -52,6 +53,7 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit, OnChanges, 
   @Output() public onDateSelect: EventEmitter<Date|Date[]>
 
   private _onChange: (_: Date|Date[]) => void
+  private _onTouched: any
 
   constructor() {
     this.options = {}
@@ -96,6 +98,10 @@ export class NgxFlatpickrComponent implements OnInit, AfterViewInit, OnChanges, 
 
   registerOnChange(fn: (_: Date|Date[]) => void): void {
     this._onChange = fn
+  }
+
+  registerOnTouched(fn: any): void {
+    this._onTouched = fn
   }
   // </FormControl>
 
