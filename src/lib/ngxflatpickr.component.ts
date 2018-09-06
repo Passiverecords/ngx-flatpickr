@@ -28,7 +28,7 @@ import locale from 'flatpickr/dist/l10n'
       #container
       [class]="class"
       [placeholder]="placeholder"
-      (blur)="_onTouched()">
+      (blur)="onTouched()">
   `,
   styles: [],
   providers: [
