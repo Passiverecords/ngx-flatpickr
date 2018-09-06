@@ -52,8 +52,8 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
   @Input() public default: Date
   @Output() public onDateSelect: EventEmitter<Date|Date[]>
 
-  public _onChange: (_: Date|Date[]) => void
-  public _onTouched: any
+  onChange: any // (_: Date|Date[]) => void
+  onTouched: any
 
   constructor() {
     this.options = {}
@@ -62,6 +62,9 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
     this.placeholder = ''
     this.onInit = new EventEmitter<Instance>()
     this.onDateSelect = new EventEmitter<Date|Date[]>()
+
+    this.onChange = () => {}
+    this.onTouched = () => {}
   }
 
   // <Angular hooks>
@@ -99,12 +102,12 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
 
   registerOnChange(fn: any): void {
     console.log('registering onchange', fn)
-    this._onChange = fn
+    this.onChange = fn
   }
 
   registerOnTouched(fn: any): void {
     console.log('registering ontouched', fn)
-    this._onTouched = fn
+    this.onTouched = fn
   }
   // </FormControl>
 
@@ -271,7 +274,7 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
   setDate(newdate: Date|Date[]): void {
     this.instance.setDate(newdate, true)
     this.onDateSelect.emit(newdate)
-    console.log(this._onChange)
-    this._onChange(newdate)
+    console.log(this.onChange)
+    this.onChange(newdate)
   }
 }
