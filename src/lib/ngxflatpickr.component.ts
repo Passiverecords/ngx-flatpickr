@@ -62,6 +62,7 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
     this.placeholder = ''
     this.onInit = new EventEmitter<Instance>()
     this.onDateSelect = new EventEmitter<Date|Date[]>()
+    this.default = null
 
     this.onChange = () => {}
     this.onTouched = () => {}
