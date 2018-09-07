@@ -270,7 +270,7 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
   }
 
   setDate(newdate: Date|Date[]): void {
-    console.log("new date:", newdate)
+    console.log("new date:", newdate, this.onChange)
     this.instance.setDate(newdate, true)
     this.onDateSelect.emit(newdate)
     this.onChange(newdate)
