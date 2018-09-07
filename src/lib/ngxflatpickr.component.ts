@@ -76,14 +76,13 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
       },
       'locale': this.setLocale(this.language)
     }) as Instance
+
+    console.log("initializing...")
+    this.onInit.emit(this.instance)
+    this.setDate(this.default)
   }
 
-  ngAfterViewInit(): void {
-    setTimeout(() => {
-      this.onInit.emit(this.instance)
-      this.setDate(this.default)
-    })
-  }
+  ngAfterViewInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.instance != undefined && changes.hasOwnProperty('default')) {
@@ -98,7 +97,6 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
 
   // <FormControl>
   writeValue(value: Date|Date[]): void {
-    console.log("writing value", value)
     this.setDate(value)
   }
 
@@ -272,6 +270,7 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
   }
 
   setDate(newdate: Date|Date[]): void {
+    console.log("new date:", newdate)
     this.instance.setDate(newdate, true)
     this.onDateSelect.emit(newdate)
     this.onChange(newdate)
