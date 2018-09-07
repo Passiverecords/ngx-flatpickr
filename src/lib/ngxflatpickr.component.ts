@@ -97,7 +97,6 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, OnCh
   }
 
   registerOnChange(fn: (_: Date|Date[]) => void): void {
-    console.log('registering onchange')
     this.onChange = fn
   }
 
@@ -271,6 +270,8 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, OnCh
   }
 
   setDate(newdate: Date|Date[]): void {
+    console.log("setting new date:", newdate)
+    console.log("onChange is currently", this.onChange)
     this.instance.setDate(newdate, true)
     this.onDateSelect.emit(newdate)
     this.onChange(newdate)
