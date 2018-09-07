@@ -51,8 +51,8 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, OnCh
   @Input() public default: Date
   @Output() public onDateSelect: EventEmitter<Date|Date[]>
 
-  onChange: (_: Date|Date[]) => void
-  onTouched: () => void
+  private onChange: (_: Date|Date[]) => void
+  private onTouched: () => void
 
   constructor() {
     this.options = {}
