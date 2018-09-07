@@ -27,7 +27,7 @@ import locale from 'flatpickr/dist/l10n'
       #container
       [class]="class"
       [placeholder]="placeholder"
-      (blur)="onTouched()">
+      (blur)="setTouched()">
   `,
   styles: [],
   providers: [
@@ -105,6 +105,10 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, OnCh
     this.onTouched = fn
   }
   // </FormControl>
+
+  setTouched(): void {
+    this.onTouched()
+  }
 
   setLocale(language: string): CustomLocale {
     switch(language.toLowerCase()) {
