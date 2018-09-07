@@ -10,9 +10,7 @@ import {
   Input,
   Output,
   SimpleChanges,
-  forwardRef,
-  ChangeDetectorRef,
-  ChangeDetectionStrategy
+  forwardRef
 } from '@angular/core'
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
 
@@ -39,8 +37,7 @@ import locale from 'flatpickr/dist/l10n'
       useExisting: NgxFlatpickrComponent,
       multi: true
     }
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  ]
 })
 export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnChanges, OnDestroy {
   @ViewChild("container") private el: ElementRef
@@ -58,7 +55,7 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
   onChange: (_: Date|Date[]) => void
   onTouched: () => void
 
-  constructor(private cd: ChangeDetectorRef) {
+  constructor() {
     this.options = {}
     this.language = ''
     this.class = ''
@@ -80,11 +77,10 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
       },
       'locale': this.setLocale(this.language)
     }) as Instance
-
-    this.onInit.emit(this.instance)
   }
 
   ngAfterViewInit(): void {
+    this.onInit.emit(this.instance)
     this.setDate(this.default)
   }
 
@@ -277,6 +273,5 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
     this.instance.setDate(newdate, true)
     this.onDateSelect.emit(newdate)
     this.onChange(newdate)
-    this.cd.detectChanges()
   }
 }
