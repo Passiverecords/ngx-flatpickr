@@ -1,6 +1,27 @@
 {
   "name": "ngx-flatpickrjs",
-  "version": "2.1.0",
+  "version": "2.1.1",
+  "description": "flatpickr for Angular 2+",
+  "licence": "MIT",
+  "homepage": "https://github.com/Passiverecords/ngx-flatpickr#readme",
+  "keyword": [
+    "flatpickr",
+    "flatpickrjs",
+    "datepicker",
+    "timepicker",
+    "angular"
+  ],
+  "bugs": {
+    "url": "https://github.com/Passiverecords/ngx-flatpickr/issues"
+  },
+  "author": "Anthony Lenglet <anthony@passiverecords.com> (https://passiverecords.com/)",
+  "contributors": [
+    "Benjamin Dequevauviller <ben@passiverecords.com> (https://passiverecords.com/)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Passiverecords/ngx-flatpickr.git"
+  },
   "peerDependencies": {
     "@angular/common": ">=2.0.0",
     "@angular/core": ">=2.0.0",

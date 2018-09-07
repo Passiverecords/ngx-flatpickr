@@ -47,3 +47,19 @@ flatpickr for Angular 2+
 
 - **placeholder** *(Input)*:  
   *the placeholder text of the input field*
+
+---
+
+**This component also works with FormControl :**
+
+```HTML
+<ngx-flatpickr
+  placeholder="Please select a date"
+  [formControl]="date"
+  >
+</ngx-flatpickr>
+```
+
+```JS
+this.date = new FormControl(new Date(), Validators.required)
+```
