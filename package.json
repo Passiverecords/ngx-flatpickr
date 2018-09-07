@@ -4,7 +4,7 @@
   "description": "flatpickr for Angular 2+",
   "licence": "MIT",
   "homepage": "https://github.com/Passiverecords/ngx-flatpickr#readme",
-  "keyword": [
+  "keywords": [
     "flatpickr",
     "flatpickrjs",
     "datepicker",
