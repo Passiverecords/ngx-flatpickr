@@ -19,6 +19,12 @@ import { Instance } from 'flatpickr/dist/types/instance'
 import { Options } from 'flatpickr/dist/types/options'
 import locale from 'flatpickr/dist/l10n'
 
+export const NGX_FLATPICKR_ACCESSOR: any = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => NgxFlatpickrComponent),
+  multi: true
+}
+
 @Component({
   selector: 'ngx-flatpickr',
   template: `
@@ -30,13 +36,7 @@ import locale from 'flatpickr/dist/l10n'
       (blur)="setTouched()">
   `,
   styles: [],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: NgxFlatpickrComponent,
-      multi: true
-    }
-  ]
+  providers: [NGX_FLATPICKR_ACCESSOR]
 })
 export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
   @ViewChild("container") private el: ElementRef
