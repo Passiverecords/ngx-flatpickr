@@ -62,7 +62,7 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, OnCh
     this.onInit = new EventEmitter<Instance>()
     this.onDateSelect = new EventEmitter<Date|Date[]>()
 
-    this.onChange = () => {}
+    this.onChange = (_: Date|Date[]) => {}
     this.onTouched = () => {}
   }
 
@@ -72,6 +72,7 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, OnCh
       ...this.options,
       onChange: (selectedDates: Date[]) => {
         this.onDateSelect.emit(selectedDates)
+        this.onChange(selectedDates)
       },
       'locale': this.setLocale(this.language)
     }) as Instance
@@ -98,7 +99,6 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, OnCh
 
   registerOnChange(fn: (_: Date|Date[]) => void): void {
     this.onChange = fn
-    console.log("onchange registered:", this.onChange)
   }
 
   registerOnTouched(fn: () => void): void {
@@ -271,8 +271,6 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, OnCh
   }
 
   setDate(newdate: Date|Date[]): void {
-    console.log("setting new date:", newdate)
-    console.log("onChange is currently", this.onChange)
     this.instance.setDate(newdate, true)
     this.onDateSelect.emit(newdate)
     this.onChange(newdate)
