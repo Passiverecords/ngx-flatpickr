@@ -1,6 +1,7 @@
 import {
   Component,
   OnInit,
+  AfterViewInit,
   OnChanges,
   OnDestroy,
   ViewChild,
@@ -41,7 +42,7 @@ import locale from 'flatpickr/dist/l10n'
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
+export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnChanges, OnDestroy {
   @ViewChild("container") private el: ElementRef
   private instance: Instance
 
@@ -81,6 +82,9 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, OnCh
     }) as Instance
 
     this.onInit.emit(this.instance)
+  }
+
+  ngAfterViewInit(): void {
     this.setDate(this.default)
   }
 
