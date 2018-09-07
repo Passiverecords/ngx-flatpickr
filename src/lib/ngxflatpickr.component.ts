@@ -1,7 +1,6 @@
 import {
   Component,
   OnInit,
-  AfterViewInit,
   OnChanges,
   OnDestroy,
   ViewChild,
@@ -39,7 +38,7 @@ import locale from 'flatpickr/dist/l10n'
     }
   ]
 })
-export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, AfterViewInit, OnChanges, OnDestroy {
+export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, OnChanges, OnDestroy {
   @ViewChild("container") private el: ElementRef
   private instance: Instance
 
@@ -52,8 +51,8 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
   @Input() public default: Date
   @Output() public onDateSelect: EventEmitter<Date|Date[]>
 
-  onChange: (_: Date|Date[]) => void
-  onTouched: () => void
+  private onChange: (_: Date|Date[]) => void
+  private onTouched: () => void
 
   constructor() {
     this.options = {}
@@ -77,12 +76,9 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
       'locale': this.setLocale(this.language)
     }) as Instance
 
-    console.log("initializing...")
     this.onInit.emit(this.instance)
     this.setDate(this.default)
   }
-
-  ngAfterViewInit(): void {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.instance != undefined && changes.hasOwnProperty('default')) {
@@ -101,6 +97,7 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
   }
 
   registerOnChange(fn: (_: Date|Date[]) => void): void {
+    console.log('registering onchange')
     this.onChange = fn
   }
 
@@ -270,7 +267,6 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
   }
 
   setDate(newdate: Date|Date[]): void {
-    console.log("new date:", newdate, this.onChange)
     this.instance.setDate(newdate, true)
     this.onDateSelect.emit(newdate)
     this.onChange(newdate)
