@@ -97,6 +97,7 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
 
   // <FormControl>
   writeValue(value: Date|Date[]): void {
+    console.log("writing value", value)
     this.setDate(value)
   }
 
