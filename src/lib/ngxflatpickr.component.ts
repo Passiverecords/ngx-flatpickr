@@ -62,7 +62,6 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
     this.placeholder = ''
     this.onInit = new EventEmitter<Instance>()
     this.onDateSelect = new EventEmitter<Date|Date[]>()
-    this.default = null
 
     this.onChange = () => {}
     this.onTouched = () => {}
@@ -80,8 +79,10 @@ export class NgxFlatpickrComponent implements ControlValueAccessor, OnInit, Afte
   }
 
   ngAfterViewInit(): void {
-    this.onInit.emit(this.instance)
-    this.setDate(this.default)
+    setTimeout(() => {
+      this.onInit.emit(this.instance)
+      this.setDate(this.default)
+    })
   }
 
   ngOnChanges(changes: SimpleChanges): void {
